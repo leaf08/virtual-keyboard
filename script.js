@@ -116,6 +116,19 @@ addText('Клавиатура создана в операционной сис�
 lang = addKey('p', 'lang');
 addText('Для переключения языка комбинация: левыe ctrl + alt', lang);
 
+doc.addEventListener('keydown', function(event) {
+    event.preventDefault()
+    console.log(event.key, event.code);
+    if(event.key.length == 1) textarea.value += event.key;
+    if(event.key == 'Tab') textarea.value += '  ';
+    if(event.key == 'Enter') textarea.value += '\n';
+
+    // let elem = document.querySelector(event.code);
+    let elem = doc.getElementsByClassName(event.code);
+    console.log(elem.classList);
+    // elem.classList.add('active');
+});
+
 function addKey(tag, className, parent, id) {
     let block = doc.createElement(tag);
     block.className = className;
